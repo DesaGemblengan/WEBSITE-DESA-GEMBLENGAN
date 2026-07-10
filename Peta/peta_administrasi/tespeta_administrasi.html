@@ -1,0 +1,195 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Peta Administrasi - Desa Gemblengan</title>
+    
+    <link rel="stylesheet" href="./resources/ol.css">
+    <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+    <link rel="stylesheet" href="./resources/qgis2web.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/aos.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/all.min.css"/> <link rel="stylesheet" href="css/style.css" /> <style>
+    /* Mengamankan elemen QGIS dari Bootstrap */
+    .ol-control > * {
+        background-color: #f8f8f8!important;
+        color: #444444!important;
+        border-radius: 4px;
+    }
+    .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
+        color: #444444!important;
+    }
+    .search-layer-input-search {
+        background-color: #f8f8f8!important;
+    }
+    .ol-control > *:focus, .ol-control >*:hover {
+        background-color: rgba(248, 248, 248, 0.9)!important;
+    } 
+    .ol-control {
+        background-color: rgba(255,255,255,.8) !important;
+        padding: 4px !important;
+        border-radius: 6px;
+    } 
+    
+    /* MENGATUR UKURAN PETA AGAR RESPONSIF */
+    body {
+        background-color: #fcf9f4; /* Warna latar belakang website */
+    }
+    #map-wrapper {
+        padding: 40px 0 80px 0;
+    }
+    #map {
+        width: 100%;
+        height: 75vh;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        overflow: hidden;
+        border: 4px solid #fff;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="topbar">
+        <div class="container">
+           <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+              <div class="top-contact d-flex flex-wrap">
+                 <span><i class="fas fa-phone-alt"></i>+62 812-3456-7890</span>
+                 <span><i class="fas fa-envelope"></i>sosmed.gemblengan@gmail.com</span>
+                 <span><i class="fas fa-map-marker-alt"></i>Balai Desa Gemblengan, Garung, Wonosobo, Jawa Tengah</span>
+              </div>
+              <div class="d-flex align-items-center gap-3">
+                 <span class="ttag"><i class="fas fa-check-circle me-1"></i>Pelayanan Warga Buka</span>
+              </div>
+           </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg" id="nav">
+        <div class="container">
+           <a class="navbar-brand" href="index.html">
+              <div class="blogo">
+                 <div class="bico"><i class="fas fa-landmark"></i></div>
+                 <div>
+                    <div class="bname">Web<span>Desa Gemblengan</span></div>
+                    <div class="bsub">Pemerintahan & Informasi Terpadu</div>
+                 </div>
+              </div>
+           </a>
+           <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+              <i class="fas fa-bars" style="color:var(--primary);font-size:1.35rem;"></i>
+           </button>
+           <div class="collapse navbar-collapse" id="navmenu">
+              <ul class="navbar-nav mx-auto">
+                 <li class="nav-item"><a class="nav-link" href="../../index.html">Beranda</a></li>
+                 <li class="nav-item"><a class="nav-link" href="../../index.html#about">Profil Desa</a></li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link" href="index.html#menu" id="navbarDropdownPotensi" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                       Potensi Dusun <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                    </a>
+                    <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownPotensi">
+                       <li><a class="dropdown-item" href="potensi-gemblengan.html">Dusun Gemblengan</a></li>
+                       <li><a class="dropdown-item" href="potensi-bedilon.html">Dusun Bedilon</a></li>
+                       <li><a class="dropdown-item" href="potensi-gesing.html">Dusun Gesing</a></li>
+                       <li><a class="dropdown-item" href="potensi-gajihan.html">Dusun Gajihan</a></li>
+                       <li><a class="dropdown-item" href="potensi-kasiman.html">Dusun Kasiman</a></li>
+                    </ul>
+                 </li>
+                 <li class="nav-item"><a class="nav-link active" href="peta_interatif.html">Peta Desa</a></li>
+                 <li class="nav-item"><a class="nav-link" href="index.html#gallery">Budaya</a></li>
+                 <li class="nav-item"><a class="nav-link" href="index.html#chefs">Aparatur</a></li>
+                 <li class="nav-item"><a class="nav-link" href="index.html#transparansi">Transparansi</a></li>
+                 <li class="nav-item"><a class="nav-link" href="index.html#contact-section">Kontak</a></li>
+              </ul>
+           </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 text-center">
+        <span class="slbl">Sistem Informasi Geografis</span>
+        <h2 class="stitle">Peta Administrasi & <span>Batas Dusun</span></h2>
+        <div class="sline mx-auto"></div>
+        <p class="sdesc mx-auto" style="max-width: 700px;">Peta dasar yang menampilkan batas wilayah administratif desa, batas antar dusun, jaringan jalan utama, dan aliran sungai di Desa Gemblengan.</p>
+    </div>
+
+    <section id="map-wrapper">
+        <div class="container-fluid px-lg-5">
+            <div id="map">
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+           <div class="row g-5">
+              <div class="col-lg-4">
+                 <div class="fnm">Web<span>Desa</span></div>
+                 <p class="fdesc">Media informasi, transparansi, dan pelayanan publik resmi milik Pemerintah Desa demi mewujudkan masyarakat yang mandiri dan sejahtera.</p>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                 <div class="ftit">Layanan Spasial</div>
+                 <ul class="flinks ps-0">
+                    <li><a href="peta_interatif.html"><i class="fas fa-chevron-right"></i> Galeri Peta Interaktif</a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Beranda Website</a></li>
+                 </ul>
+              </div>
+              <div class="col-lg-4">
+                 <div class="ftit">Kontak Kami</div>
+                 <div class="fci">
+                    <div class="fciico"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="fciinfo"><strong>Alamat</strong>Balai Desa, Kabupaten Wonosobo</div>
+                 </div>
+                 <div class="fci">
+                    <div class="fciico"><i class="fas fa-envelope"></i></div>
+                    <div class="fciinfo"><strong>Email</strong>sosmed.gemblengan@gmail.com</div>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="fbot">
+           <div class="container">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                 <p>&copy; 2026 <span>Pemerintah Desa</span>. All Rights Reserved.</p>
+              </div>
+           </div>
+        </div>
+    </footer>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <script src="resources/qgis2web_expressions.js"></script>
+    <script src="./resources/functions.js"></script>
+    <script src="./resources/ol.js"></script>
+    <script src="./resources/ol-layerswitcher.js"></script>
+    <script src="resources/photon-geocoder-autocomplete.min.js"></script>
+    <script src="resources/olms.js"></script>
+    
+    <script src="layers/BATASDUSUN_DESAGEMBLENGAN_1.js"></script>
+    <script src="layers/BATASDUSUN_DESAGEMBLENGANTransparan_2.js"></script>
+    <script src="layers/JalanDesaGemblengan_3.js"></script>
+    <script src="layers/SUNGAIDesaGemblengan_4.js"></script>
+    <script src="layers/BATASDESAGEMBLENGAN_5.js"></script>
+    
+    <script src="styles/BATASDUSUN_DESAGEMBLENGAN_1_style.js"></script>
+    <script src="styles/BATASDUSUN_DESAGEMBLENGANTransparan_2_style.js"></script>
+    <script src="styles/JalanDesaGemblengan_3_style.js"></script>
+    <script src="styles/SUNGAIDesaGemblengan_4_style.js"></script>
+    <script src="styles/BATASDESAGEMBLENGAN_5_style.js"></script>
+    
+    <script src="./layers/layers.js" type="text/javascript"></script> 
+    <script src="./resources/Autolinker.min.js"></script>
+    <script src="./resources/qgis2web.js"></script>
+</body>
+</html>
