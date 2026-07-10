@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="Pemerintah Desa">
+      <meta name="description" content="Website Resmi Pemerintah Desa - Profil, Potensi, dan Layanan Informasi">
+      <title>Website Pemerintahan Desa Gemblengan</title>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+      <!-- Bootstrap 5.3 -->
+      <link href="css/bootstrap.min.css" rel="stylesheet"/>
+      <!-- AOS Animate on Scroll -->
+      <link href="css/aos.css" rel="stylesheet"/>
+      <!-- Swiper -->
+      <link href="css/swiper-bundle.min.css" rel="stylesheet"/>
+      <!-- all min css -->
+      <link rel="stylesheet" href="css/all.min.css"/>
+      <!-- magnific CSS -->
+      <link rel="stylesheet" href="css/magnific-popup.css"/>
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="css/style.css" />
+   </head>
+   <body>
+      <!-- ============================================================
+         TOP BAR
+         ============================================================ -->
+      <div id="topbar">
+         <div class="container">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+               <div class="top-contact d-flex flex-wrap">
+                  <span><i class="fas fa-phone-alt"></i>+62 812-3456-7890</span>
+                  <span><i class="fas fa-envelope"></i>sosmed.gemblengan@gmail.com</span>
+                  <span><i class="fas fa-map-marker-alt"></i>Balai Desa Gemblengan, Garung, Wonosobo, Jawa Tengah</span>
+               </div>
+               <div class="d-flex align-items-center gap-3">
+                  <span class="ttag"><i class="fas fa-check-circle me-1"></i>Pelayanan Warga Buka</span>
+                  <div class="tsoc">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-youtube"></i></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- ============================================================
+         NAVBAR
+         ============================================================ -->
+      <nav class="navbar navbar-expand-lg" id="nav">
+         <div class="container">
+            <a class="navbar-brand" href="#">
+               <div class="blogo">
+                  <div class="bico"><i class="fas fa-landmark"></i></div>
+                  <div>
+                     <div class="bname">Web<span>Desa Gemblengan</span></div>
+                     <div class="bsub">Pemerintahan & Informasi Terpadu</div>
+                  </div>
+               </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <i class="fas fa-bars" style="color:var(--primary);font-size:1.35rem;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+               <ul class="navbar-nav mx-auto">
+                  <li class="nav-item"><a class="nav-link active" href="#hero">Beranda</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#about">Profil Desa</a></li>
+      
+                  <!-- Dropdown Potensi Dusun (Dari penyesuaian sebelumnya) -->
+                  <li class="nav-item dropdown">
+                     <a class="nav-link" href="#menu" id="navbarDropdownPotensi" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Potensi Dusun <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                     </a>
+                     <ul class="dropdown-menu border-0 shadow" aria-labelledby="navbarDropdownPotensi">
+                        <li><a class="dropdown-item" href="potensi-gemblengan.html">Dusun Gemblengan</a></li>
+                        <li><a class="dropdown-item" href="potensi-bedilon.html">Dusun Bedilon</a></li>
+                        <li><a class="dropdown-item" href="potensi-gesing.html">Dusun Gesing</a></li>
+                        <li><a class="dropdown-item" href="potensi-gajihan.html">Dusun Gajihan</a></li>
+                        <li><a class="dropdown-item" href="potensi-kasiman.html">Dusun Kasiman</a></li>
+                     </ul>
+                  </li>
+      
+                  <!-- MENU BARU: Peta Desa (Mengarah ke WebGIS) -->
+                  <li class="nav-item"><a class="nav-link" href="peta_interaktif.html">Peta Desa</a></li>
+      
+                  <li class="nav-item"><a class="nav-link" href="#gallery">Budaya</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#chefs">Aparatur</a></li>
+      
+                  <!-- Menu yang tadinya Layanan diubah menjadi Transparansi (Dari penyesuaian sebelumnya) -->
+                  <li class="nav-item"><a class="nav-link" href="#transparansi">Transparansi</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#contact-section">Kontak</a></li>
+               </ul>
+   
+               <div class="d-flex align-items-center gap-1">
+                  <button id="navSearchBtn" title="Cari Informasi"><i class="fas fa-search"></i></button>
+                  <!-- Tombol "Buat Surat" sudah dihapus dari sini -->
+               </div>
+            </div>
+         </div>
+      </nav>
+      <!-- ============================================================
+         SEARCH OVERLAY POPUP
+         ============================================================ -->
+      <div id="searchOv">
+         <button class="sovclose" id="searchClose"><i class="fas fa-times"></i></button>
+         <div class="sovbox">
+            <h4>Pencarian Informasi Desa</h4>
+            <div class="sovinput">
+               <input type="text" id="searchInput" placeholder="Cari layanan, berita, data..." autocomplete="off"/>
+               <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="sovcats">
+               <div class="sovcat active" data-cat="all">
+                  <i class="fas fa-list mb-1"></i> Semua
+               </div>
+               <div class="sovcat" data-cat="layanan">
+                  <i class="fas fa-file-signature mb-1"></i> Layanan
+               </div>
+               <div class="sovcat" data-cat="potensi">
+                  <i class="fas fa-seedling mb-1"></i> Potensi
+               </div>
+               <div class="sovcat" data-cat="peta">
+                  <i class="fas fa-map-marked-alt mb-1"></i> Peta Desa
+               </div>
+               <div class="sovcat" data-cat="berita">
+                  <i class="fas fa-newspaper mb-1"></i> Berita
+               </div>
+            </div>
+            <div class="sovtrend">
+               <p><i class="fas fa-fire me-1" style="color:var(--secondary);"></i>Pencarian Populer</p>
+               <span class="ttag">Surat Domisili</span>
+               <span class="ttag">Bantuan Sosial</span>
+               <span class="ttag">Jadwal Posyandu</span>
+               <span class="ttag">Peta Wilayah</span>
+            </div>
+         </div>
+      </div>
+      <!-- ============================================================
+         HERO
+         ============================================================ -->
+      <section id="hero">
+         <div class="hs hs1"></div>
+         <div class="hs hs2"></div>
+         <div class="hbgtxt">DESA</div>
+         <div class="container">
+            <div class="row align-items-center g-5" style="min-height:88vh;">
+               <div class="col-lg-6">
+                  <div class="hbadge">
+                     <div class="hbi"><i class="fas fa-star"></i></div>
+                     <span>Desa Mandiri & Inovatif di Kabupaten Wonosobo</span>
+                  </div>
+                  <h1 class="htitle">Membangun <span class="hl">Desa</span><br/>Untuk Nusantara</h1>
+                  <p class="hdesc">Website resmi Pemerintahan Desa. Wujud transparansi informasi, kemudahan layanan administrasi digital, dan promosi potensi wilayah yang unggul.</p>
+                  <div class="d-flex flex-wrap gap-3 mb-2">
+                     <a href="#about" class="btn-red"><i class="fas fa-compass"></i>Jelajahi Desa</a>
+                     <!-- VIDEO DRONE DESA -->
+					 <a href="https://www.youtube.com/watch?v=YOUR_DRONE_VIDEO_ID" class="magnific_popup btn-play popup-youtube">
+						<div class="pico"><i class="fas fa-plane"></i></div>
+						<span>Lihat Video Drone</span>
+					 </a>
+                  </div>
+                  <div class="hstats d-flex gap-3 flex-wrap mt-4">
+                     <div class="hstat"><span class="snum">0<em>+</em></span><small>Penduduk</small></div>
+                     <div class="sdiv"></div>
+                     <div class="hstat"><span class="snum">5</span><small>Dusun Wilayah</small></div>
+                     <div class="sdiv"></div>
+                     <div class="hstat"><span class="snum">00</span><small>Lembaga Desa</small></div>
+                     <div class="sdiv"></div>
+                     <div class="hstat"><span class="snum">285<em>Ha</em></span><small>Luas Wilayah</small></div>
+                  </div>
+               </div>
+               <div class="col-lg-6">
+                  <div style="position:relative;text-align:center;">
+                     <div class="hcircle">
+                        <!-- Ganti gambar burger dengan gambar pemandangan desa / balai desa -->
+                        <img src="img/banner-img.jpg" alt="Pemandangan Desa"/>
+                     </div>
+                     <div class="fcard fc1">
+                        <div class="fcoi r"><i class="fas fa-bullhorn"></i></div>
+                        <div><span class="fcnum">Pengumuman</span><span class="fcsm">Musrenbangdes Besok</span></div>
+                     </div>
+                     <div class="fcard fc2">
+                        <div class="fcoi y"><i class="fas fa-hands-helping"></i></div>
+                        <div><span class="fcnum">Layanan Warga</span><span class="fcsm">Cepat & Transparan</span></div>
+                     </div>
+                     <div class="fcard fc3">
+                        <div class="fcoi g"><i class="fas fa-map-marked-alt"></i></div>
+                        <div><span class="fcnum">WebGIS</span><span class="fcsm">Pemetaan Digital Terpadu</span></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- MARQUEE (Pengumuman Berjalan) -->
+      <div class="mqsec">
+         <div class="mqtrack">
+            <div class="mqitem"><i class="fas fa-circle"></i>Pelayanan Balai Desa Buka Senin - Jumat Pukul 08.00 - 15.00 WIB</div>
+            <div class="mqitem"><i class="fas fa-circle"></i>Gotong Royong Bersih Desa Dilaksanakan Setiap Hari Minggu</div>
+            <div class="mqitem"><i class="fas fa-circle"></i>Penyaluran BLT Dana Desa Tahap II Minggu Depan</div>
+            <div class="mqitem"><i class="fas fa-circle"></i>Mari Jaga Keamanan dan Ketertiban Lingkungan</div>
+            <div class="mqitem"><i class="fas fa-circle"></i>Pelayanan Balai Desa Buka Senin - Jumat Pukul 08.00 - 15.00 WIB</div>
+            <div class="mqitem"><i class="fas fa-circle"></i>Gotong Royong Bersih Desa Dilaksanakan Setiap Hari Minggu</div>
+         </div>
+      </div>
+      <!-- ============================================================
+         PROFIL DESA & VISI MISI (Menggantikan About)
+         ============================================================ -->
+      <section id="about">
+         <div class="container">
+            <div class="row align-items-center g-5">
+               <div class="col-lg-5" data-aos="fade-right">
+                  <div class="astack">
+                     <div class="aexp"><span class="anum">1930</span><small>Tahun<br/>Berdiri</small></div>
+                     <div class="amain"><img src="img/about1.jpg" alt="Sejarah Desa"/></div>
+                     <div class="asm"><img src="img/about2.jpg" alt="Aktivitas Warga"/></div>
+                  </div>
+               </div>
+               <div class="col-lg-7" data-aos="fade-left">
+                  <span class="slbl">Profil Desa</span>
+                  <h2 class="stitle text-start">Mengenal Lebih Dekat<br/><span>Desa Kami</span></h2>
+                  <div class="sline lft"></div>
+                  <p class="sdesc mb-4">Desa kami berdiri sejak masa penjajahan dan terus berkembang menjadi wilayah yang mengedepankan kearifan lokal berpadu dengan kemajuan teknologi. Sebagian besar warga berprofesi di sektor agraris dan pariwisata.</p>
+                  
+                  <h4 class="mb-3">Visi & Misi</h4>
+                  <div class="mb-4">
+                     <div class="fti">
+                        <div class="ftico r"><i class="fas fa-eye"></i></div>
+                        <div>
+                           <h6>Visi Desa</h6>
+                           <p>Terwujudnya Desa yang Mandiri, Sejahtera, Religius, dan Berbudaya berbasis Inovasi Digital dan Partisipasi Masyarakat.</p>
+                        </div>
+                     </div>
+                     <div class="fti">
+                        <div class="ftico y"><i class="fas fa-tasks"></i></div>
+                        <div>
+                           <h6>Misi Pembangunan Ekonomi</h6>
+                           <p>Mengoptimalkan potensi pertanian dan UMKM lokal serta mengembangkan pariwisata berbasis budaya dan keindahan alam.</p>
+                        </div>
+                     </div>
+                     <div class="fti">
+                        <div class="ftico g"><i class="fas fa-laptop-house"></i></div>
+                        <div>
+                           <h6>Misi Pelayanan & Infrastruktur</h6>
+                           <p>Meningkatkan kualitas pelayanan administrasi secara cepat (digital) serta membangun infrastruktur yang merata di setiap dusun.</p>
+                        </div>
+                     </div>
+                  </div>
+                  <a href="#history" class="btn-red"><i class="fas fa-book-open"></i>Baca Sejarah Lengkap</a>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- ============================================================
+         POTENSI WILAYAH PER DUSUN (Menggantikan Menu)
+         ============================================================ -->
+      <section id="menu">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <span class="slbl">Kekayaan Alam & Ekonomi</span>
+               <h2 class="stitle">Potensi Wilayah <span>Per Dusun</span></h2>
+               <div class="sline"></div>
+            </div>
+            <!-- Filter buttons Dusun -->
+           <div class="text-center mb-4" data-aos="fade-up">
+               <button class="filtbtn active" data-f="gemblengan">Dusun Gemblengan</button>
+               <button class="filtbtn" data-f="bedilon">Dusun Bedilon</button>
+               <button class="filtbtn" data-f="gesing">Dusun Gesing</button>
+               <button class="filtbtn" data-f="gajihan">Dusun Gajihan</button>
+               <button class="filtbtn" data-f="kasiman">Dusun Kasiman</button>
+            </div>
+            <div class="row g-4" id="mgrid">
+               <!-- Potensi Dusun 1 -->
+               <div class="col-sm-6 col-lg-4 mwrap" data-c="dusun1" data-aos="fade-up">
+                  <div class="mcard"
+                     data-img="img/menu/1.jpg"
+                     data-title="Pusat Kerajinan Anyaman Bambu"
+                     data-cat="Dusun Krajan"
+                     data-price="" data-old=""
+                     data-rating="4.9" data-reviews="UMKM"
+                     data-desc="Dusun Krajan dikenal sebagai sentra penghasil kerajinan anyaman bambu berkualitas ekspor yang memberdayakan ibu-ibu rumah tangga setempat."
+                     data-tags="UMKM,Ekonomi,Kerajinan">
+                     <div class="mimg">
+                        <img src="img/menu/1.jpg" alt="Potensi Dusun Krajan"/>
+                        <div class="mbdg hot"><i class="fas fa-star"></i> Unggulan</div>
+                     </div>
+                     <div class="mbody">
+                        <div class="mcat">Dusun Krajan</div>
+                        <div class="mtit">Kerajinan Anyaman Bambu</div>
+                        <div class="mdesc">Sentra penghasil kerajinan anyaman bambu berkualitas tinggi.</div>
+                        <div class="mfoot">
+                           <div>
+                              <div class="mprice">Sektor UMKM</div>
+                           </div>
+                           <button class="madd" title="Detail Potensi"><i class="fas fa-info"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Potensi Dusun 2 -->
+               <div class="col-sm-6 col-lg-4 mwrap" data-c="dusun2" data-aos="fade-up" data-aos-delay="80">
+                  <div class="mcard"
+                     data-img="img/menu/2.jpg"
+                     data-title="Pertanian Sayur Organik"
+                     data-cat="Dusun Pager"
+                     data-price="" data-old=""
+                     data-rating="4.8" data-reviews="Agrikultur"
+                     data-desc="Hamparan lahan pertanian subur di Dusun Pager dikelola secara modern untuk menghasilkan sayuran organik bebas pestisida."
+                     data-tags="Pertanian,Organik,Hijau">
+                     <div class="mimg">
+                        <img src="img/menu/2.jpg" alt="Pertanian Dusun Pager"/>
+                        <div class="mbdg new"><i class="fas fa-leaf"></i> Agraris</div>
+                     </div>
+                     <div class="mbody">
+                        <div class="mcat">Dusun Pager</div>
+                        <div class="mtit">Pertanian Sayur Organik</div>
+                        <div class="mdesc">Lahan subur penghasil sayuran organik bebas pestisida.</div>
+                        <div class="mfoot">
+                           <div>
+                              <div class="mprice">Sektor Pertanian</div>
+                           </div>
+                           <button class="madd" title="Detail Potensi"><i class="fas fa-info"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Potensi Dusun 3 -->
+               <div class="col-sm-6 col-lg-4 mwrap" data-c="dusun3" data-aos="fade-up" data-aos-delay="160">
+                  <div class="mcard"
+                     data-img="img/menu/3.jpg"
+                     data-title="Air Terjun Kembar"
+                     data-cat="Dusun Ngisor"
+                     data-price="" data-old=""
+                     data-rating="5.0" data-reviews="Pariwisata"
+                     data-desc="Destinasi wisata alam tersembunyi dengan pemandangan air terjun jernih dan udara segar pegunungan. Dikelola langsung oleh Pokdarwis desa."
+                     data-tags="Wisata,Alam,Air Terjun">
+                     <div class="mimg">
+                        <img src="img/menu/3.jpg" alt="Wisata Desa"/>
+                        <div class="mbdg"><i class="fas fa-camera"></i> Pariwisata</div>
+                     </div>
+                     <div class="mbody">
+                        <div class="mcat">Dusun Ngisor</div>
+                        <div class="mtit">Wisata Air Terjun Kembar</div>
+                        <div class="mdesc">Destinasi wisata alam yang dikelola oleh Pokdarwis lokal.</div>
+                        <div class="mfoot">
+                           <div>
+                              <div class="mprice">Sektor Pariwisata</div>
+                           </div>
+                           <button class="madd" title="Detail Potensi"><i class="fas fa-info"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Potensi Dusun 4 -->
+               <div class="col-sm-6 col-lg-4 mwrap" data-c="dusun4" data-aos="fade-up">
+                  <div class="mcard"
+                     data-img="img/menu/4.jpg"
+                     data-title="Perkebunan Kopi Arabika"
+                     data-cat="Dusun Duwur"
+                     data-price="" data-old=""
+                     data-rating="4.5" data-reviews="Perkebunan"
+                     data-desc="Terletak di dataran tertinggi, dusun ini menghasilkan biji Kopi Arabika dengan cita rasa khas yang telah didistribusikan ke berbagai kedai kopi di nusantara."
+                     data-tags="Kopi,Perkebunan,Dataran Tinggi">
+                     <div class="mimg">
+                        <img src="img/menu/4.jpg" alt="Kopi Arabika"/>
+                     </div>
+                     <div class="mbody">
+                        <div class="mcat">Dusun Duwur</div>
+                        <div class="mtit">Perkebunan Kopi Arabika</div>
+                        <div class="mdesc">Penghasil biji kopi berkualitas khas pegunungan.</div>
+                        <div class="mfoot">
+                           <div>
+                              <div class="mprice">Sektor Perkebunan</div>
+                           </div>
+                           <button class="madd" title="Detail Potensi"><i class="fas fa-info"></i></button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+            <div class="text-center mt-5"><a href="#" class="btn-red"><i class="fas fa-map-signs"></i>Lihat Seluruh Potensi</a></div>
+         </div>
+      </section>
+
+      <!-- ============================================================
+         PETA DESA / WEBGIS HIGHLIGHT (Menggantikan Special Offer)
+         ============================================================ -->
+      <section id="special">
+         <div class="spbg" style="background: url('img/map-bg.jpg') no-repeat center center; background-size: cover;"></div>
+         <div class="container" style="position:relative;z-index:2;">
+            <div class="row align-items-center g-5">
+               <div class="col-lg-6" data-aos="fade-right">
+                  <div class="sptag"><i class="fas fa-map me-1"></i>Sistem Informasi Geografis</div>
+                  <h2 class="sptitle">Jelajahi<br/>Peta Digital<br/><span>Desa Kami</span></h2>
+                  <p class="spdesc">Kami mengintegrasikan teknologi pemetaan spasial (WebGIS) untuk memetakan batas administrasi, sebaran infrastruktur, tata guna lahan, hingga potensi UMKM dan pertanian desa secara akurat.</p>
+                  <a href="peta_interaktif.html" class="btn-red"><i class="fas fa-map-marked-alt"></i>Buka Peta Interaktif</a>
+               </div>
+               <div class="col-lg-6" data-aos="fade-left">
+                  <div class="spimgw">
+                     <div class="spglow"></div>
+                     <div class="sppbdg" style="width: auto; padding: 15px;"><span class="np" style="font-size: 1.2rem;"><i class="fas fa-satellite"></i> Update 2026</span></div>
+                     <img src="img/DESA_GEMBLENGAN.jpg" alt="Ilustrasi Peta Desa" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);"/>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- ============================================================
+         KESENIAN ADAT DAN BUDAYA (Menggantikan Gallery)
+         ============================================================ -->
+      <section id="gallery">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <span class="slbl">Kearifan Lokal</span>
+               <h2 class="stitle">Kesenian Adat & <span>Budaya</span></h2>
+               <div class="sline"></div>
+            </div>
+            <div class="ggrid" data-aos="fade-up">
+               <div class="gitem"
+                  data-gi="0"
+                  data-gimg="img/portfolio/work1.jpg"
+                  data-gtitle="Tradisi Sedekah Bumi"
+                  data-gdesc="Upacara adat tahunan sebagai wujud syukur masyarakat petani atas hasil panen yang melimpah, diisi dengan doa bersama dan arak-arakan gunungan hasil bumi.">
+                  <img src="img/portfolio/work1.jpg" alt="Sedekah Bumi"/>
+                  <div class="gover"><span><i class="fas fa-expand-alt"></i> Tradisi Sedekah Bumi</span></div>
+               </div>
+               <div class="gitem"
+                  data-gi="1"
+                  data-gimg="img/portfolio/work2.jpg"
+                  data-gtitle="Tari Topeng Tradisional"
+                  data-gdesc="Kesenian tari topeng yang dilestarikan oleh pemuda-pemudi desa, sering ditampilkan pada acara penyambutan tamu atau perayaan hari besar.">
+                  <img src="img/portfolio/work2.jpg" alt="Tari Topeng"/>
+                  <div class="gover"><span><i class="fas fa-expand-alt"></i> Tari Topeng Desa</span></div>
+               </div>
+               <div class="gitem"
+                  data-gi="2"
+                  data-gimg="img/portfolio/work3.jpg"
+                  data-gtitle="Kesenian Kuda Lumping"
+                  data-gdesc="Pertunjukan seni jaranan atau kuda lumping yang masih kental dengan unsur magis dan budaya leluhur, menjadi hiburan favorit warga.">
+                  <img src="img/portfolio/work3.jpg" alt="Kuda Lumping"/>
+                  <div class="gover"><span><i class="fas fa-expand-alt"></i> Kuda Lumping</span></div>
+               </div>
+               <div class="gitem"
+                  data-gi="3"
+                  data-gimg="img/portfolio/work4.jpg"
+                  data-gtitle="Kerajinan Batik Tulis"
+                  data-gdesc="Warisan budaya membatik yang diteruskan secara turun temurun, menghasilkan corak khas flora dan fauna lokal.">
+                  <img src="img/portfolio/work4.jpg" alt="Batik"/>
+                  <div class="gover"><span><i class="fas fa-expand-alt"></i> Batik Tulis Lokal</span></div>
+               </div>
+               <div class="gitem"
+                  data-gi="4"
+                  data-gimg="img/portfolio/work5.jpg"
+                  data-gtitle="Gamelan & Karawitan"
+                  data-gdesc="Kelompok karawitan desa yang aktif berlatih setiap akhir pekan di balai dusun untuk menjaga lestarinya nada-nada Jawa.">
+                  <img src="img/portfolio/work5.jpg" alt="Karawitan"/>
+                  <div class="gover"><span><i class="fas fa-expand-alt"></i> Kelompok Karawitan</span></div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- SEJARAH DESA (TIMELINE) -->
+      <section id="history">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <span class="slbl">Jejak Langkah</span>
+               <h2 class="stitle">Sejarah Singkat <span>Desa</span></h2>
+               <div class="sline"></div>
+               <p class="sdesc mx-auto" style="max-width:480px;">Perjalanan panjang terbentuknya desa dari masa ke masa hingga menjadi desa yang mandiri.</p>
+            </div>
+            <div class="timeline" data-aos="fade-up">
+               <!-- ODD -->
+               <div class="tli">
+                  <div class="tl-left">
+                     <div class="tlyear">1930</div>
+                     <h5>Awal Mula Penyatuan Dusun</h5>
+                     <p>Desa ini awalnya terdiri dari kelompok-kelompok pemukiman kecil di lereng bukit yang kemudian disatukan oleh seorang tokoh sesepuh desa untuk membentuk pemerintahan yang lebih terorganisir.</p>
+                  </div>
+                  <div class="tl-center"><div class="tldot"></div></div>
+                  <div class="tl-right">
+                     <div class="tlyear">1930</div>
+                     <h5>Awal Mula Penyatuan Dusun</h5>
+                     <p>Desa ini awalnya terdiri dari kelompok-kelompok pemukiman kecil di lereng bukit yang kemudian disatukan oleh seorang tokoh sesepuh desa.</p>
+                  </div>
+               </div>
+               <!-- EVEN -->
+               <div class="tli">
+                  <div class="tl-left">
+                     <div class="tlyear">1985</div>
+                     <h5>Pembangunan Balai Desa Pertama</h5>
+                     <p>Masyarakat bergotong-royong mendirikan balai desa pertama yang menjadi pusat musyawarah dan pelayanan administrasi kependudukan.</p>
+                  </div>
+                  <div class="tl-center"><div class="tldot"></div></div>
+                  <div class="tl-right">
+                     <div class="tlyear">1985</div>
+                     <h5>Pembangunan Balai Desa Pertama</h5>
+                     <p>Masyarakat bergotong-royong mendirikan balai desa pertama yang menjadi pusat musyawarah dan pelayanan administrasi kependudukan.</p>
+                  </div>
+               </div>
+               <!-- ODD -->
+               <div class="tli">
+                  <div class="tl-left">
+                     <div class="tlyear">2018</div>
+                     <h5>Era Digitalisasi Desa</h5>
+                     <p>Desa mulai menerapkan sistem administrasi berbasis komputer dan meluncurkan program pemetaan partisipatif potensi desa menggunakan teknologi spasial.</p>
+                  </div>
+                  <div class="tl-center"><div class="tldot"></div></div>
+                  <div class="tl-right">
+                     <div class="tlyear">2018</div>
+                     <h5>Era Digitalisasi Desa</h5>
+                     <p>Desa mulai menerapkan sistem administrasi berbasis komputer dan meluncurkan program pemetaan partisipatif potensi desa.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- ============================================================
+   DATA PERANGKAT & LEMBAGA DESA (Bagian Aparatur)
+   ============================================================ -->
+<section id="chefs">
+   <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+         <span class="slbl">Pemerintahan Desa</span>
+         <h2 class="stitle">Bagan Struktur <span>Aparatur Desa</span></h2>
+         <div class="sline"></div>
+      </div>
+      
+      <!-- Bagan Organisasi Kecil -->
+      <div class="org-chart-mini" data-aos="fade-up">
+         <!-- Level 1: Kades -->
+         <div class="d-flex justify-content-center mb-2">
+            <div class="chcard shadow-sm" style="width: 250px; margin-bottom: 0;">
+               <div class="chimg" style="height: 200px;"><img src="img/chefs/pp_kosong.jpg" alt="Kepala Desa" style="object-fit: cover; height: 100%; width: 100%;"/></div>
+               <div class="chbody py-3">
+                  <div class="chnm" style="font-size: 1.1rem;">Bpk. </div>
+                  <div class="chrole text-danger fw-bold">Kepala Desa</div>
+               </div>
+            </div>
+         </div>
+         
+         <!-- Garis Penghubung -->
+         <div class="d-flex justify-content-center">
+            <div style="width: 2px; height: 30px; background-color: var(--primary);"></div>
+         </div>
+         <div class="d-flex justify-content-center">
+            <div style="width: 40%; height: 2px; background-color: var(--primary);"></div>
+         </div>
+         <div class="d-flex justify-content-between" style="width: 40%; margin: 0 auto;">
+            <div style="width: 2px; height: 30px; background-color: var(--primary);"></div>
+            <div style="width: 2px; height: 30px; background-color: var(--primary);"></div>
+         </div>
+
+         <!-- Level 2: Sekdes & Kasi -->
+         <div class="d-flex justify-content-center gap-4 gap-md-5">
+            <div class="chcard shadow-sm" style="width: 220px;">
+               <div class="chimg" style="height: 180px;"><img src="img/chefs/pp_kosong.jpg" alt="Sekretaris Desa" style="object-fit: cover; height: 100%; width: 100%;"/></div>
+               <div class="chbody py-2">
+                  <div class="chnm" style="font-size: 1rem;">Bpk.</div>
+                  <div class="chrole">Sekretaris Desa</div>
+               </div>
+            </div>
+            <div class="chcard shadow-sm" style="width: 220px;">
+               <div class="chimg" style="height: 180px;"><img src="img/chefs/pp_kosong.jpg" alt="Kasi Kesejahteraan" style="object-fit: cover; height: 100%; width: 100%;"/></div>
+               <div class="chbody py-2">
+                  <div class="chnm" style="font-size: 1rem;">Bpk.</div>
+                  <div class="chrole">Kasi Kesejahteraan</div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Tombol Lihat Selengkapnya -->
+      <div class="text-center mt-5" data-aos="fade-up">
+         <a href="struktur-organisasi.html" target="_blank" class="btn-red"><i class="fas fa-sitemap"></i> Lihat Bagan Struktur Selengkapnya</a>
+      </div>
+   </div>
+</section>
+
+      <!-- ============================================================
+         PENGAJUAN LAYANAN ADMINISTRASI (Menggantikan Reservation)
+         ============================================================ -->
+      <section id="transparansi" style="background-color: #fcf9f4; padding: 80px 0;">
+   <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+         <span class="slbl">Keterbukaan Informasi Publik</span>
+         <h2 class="stitle">Transparansi <span>APBDes 2026</span></h2>
+         <div class="sline"></div>
+         <p class="sdesc mx-auto" style="max-width:500px;">Wujud komitmen pemerintahan desa dalam mewujudkan tata kelola keuangan yang transparan, akuntabel, dan berpihak pada masyarakat.</p>
+      </div>
+      
+      <div class="row align-items-center g-5">
+         <div class="col-lg-5" data-aos="fade-right">
+            <img src="img/about2.jpg" alt="Transparansi Keuangan Desa" class="img-fluid" style="border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 5px solid #fff;"/>
+         </div>
+         <div class="col-lg-7" data-aos="fade-left">
+            <div style="background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+               
+               <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                     <span class="fw-bold"><i class="fas fa-arrow-down text-success me-2"></i>Pendapatan Desa</span>
+                     <span class="fw-bold">Rp 1.500.000.000</span>
+                  </div>
+                  <div class="progress" style="height: 12px; border-radius: 10px;">
+                     <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </div>
+
+               <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                     <span class="fw-bold"><i class="fas fa-arrow-up text-danger me-2"></i>Belanja Pembangunan & Pemberdayaan</span>
+                     <span class="fw-bold">Rp 1.250.000.000</span>
+                  </div>
+                  <div class="progress" style="height: 12px; border-radius: 10px;">
+                     <div class="progress-bar bg-danger" role="progressbar" style="width: 83%;" aria-valuenow="83" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </div>
+
+               <div class="mb-4">
+                  <div class="d-flex justify-content-between mb-2">
+                     <span class="fw-bold"><i class="fas fa-wallet text-warning me-2"></i>Belanja Penyelenggaraan Pemerintahan</span>
+                     <span class="fw-bold">Rp 250.000.000</span>
+                  </div>
+                  <div class="progress" style="height: 12px; border-radius: 10px;">
+                     <div class="progress-bar bg-warning" role="progressbar" style="width: 17%;" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+               </div>
+               
+               <hr class="my-4">
+               <a href="apbdes.html" class="btn-red w-100 justify-content-center"><i class="fas fa-chart-pie"></i> Lihat Laporan Keuangan Lengkap</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+      <!-- BERITA & PENGUMUMAN (Menggantikan Blog) -->
+      <section id="blog">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <span class="slbl">Berita & Informasi Terkini</span>
+               <h2 class="stitle">Kabar <span>Desa</span></h2>
+               <div class="sline"></div>
+            </div>
+            <div class="row g-4">
+               <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                  <div class="blcard">
+                     <div class="blimg">
+                        <img src="img/blog/1.jpg" alt="Musrenbang"/>
+                        <div class="bldatebdg"><span class="bd">14</span><span class="bm">Jul</span></div>
+                     </div>
+                     <div class="blbody">
+                        <div class="bltag">Pemerintahan</div>
+                        <div class="bltit"><a href="#">Rapat Musrenbangdes Tahun Anggaran 2026 Berjalan Lancar</a></div>
+                        <div class="blmeta"><span><i class="fas fa-user"></i>Admin Desa</span><span><i class="fas fa-eye"></i>Dilihat 124x</span></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                  <div class="blcard">
+                     <div class="blimg">
+                        <img src="img/blog/2.jpg" alt="Bantuan"/>
+                        <div class="bldatebdg"><span class="bd">02</span><span class="bm">Jul</span></div>
+                     </div>
+                     <div class="blbody">
+                        <div class="bltag">Sosial</div>
+                        <div class="bltit"><a href="#">Penyaluran Bantuan Bibit Pertanian untuk Kelompok Tani Desa</a></div>
+                        <div class="blmeta"><span><i class="fas fa-user"></i>Kasi Kesejahteraan</span><span><i class="fas fa-eye"></i>Dilihat 98x</span></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                  <div class="blcard">
+                     <div class="blimg">
+                        <img src="img/blog/3.jpg" alt="Kerja Bakti"/>
+                        <div class="bldatebdg"><span class="bd">28</span><span class="bm">Jun</span></div>
+                     </div>
+                     <div class="blbody">
+                        <div class="bltag">Masyarakat</div>
+                        <div class="bltit"><a href="#">Kegiatan Kerja Bakti Rutin Pembersihan Saluran Air di Musim Penghujan</a></div>
+                        <div class="blmeta"><span><i class="fas fa-user"></i>Ketua Karang Taruna</span><span><i class="fas fa-eye"></i>Dilihat 150x</span></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- ============================================================
+         KONTAK / PUSAT INFORMASI
+         ============================================================ -->
+      <section id="contact-section">
+         <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+               <span class="slbl">Pusat Informasi</span>
+               <h2 class="stitle">Hubungi <span>Balai Desa</span></h2>
+               <div class="sline"></div>
+               <p class="sdesc mx-auto" style="max-width:480px;">Sampaikan aspirasi, aduan masyarakat, atau pertanyaan melalui form di bawah atau datang langsung ke Balai Desa.</p>
+            </div>
+            <div class="row g-4">
+               <div class="col-lg-4" data-aos="fade-right">
+                  <div class="ctdark">
+                     <h4>Informasi Kontak</h4>
+                     <p class="ctsub">Kantor kami siap melayani Anda pada jam kerja.</p>
+                     <div class="ctitem">
+                        <div class="cticon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="ctinfo"><strong>Alamat Balai Desa</strong><span>Bedilon, Gemblengan, Kec. Garung,<br/> Kabupaten Wonosobo, Jawa Tengah</span></div>
+                     </div>
+                     <div class="ctitem">
+                        <div class="cticon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="ctinfo"><strong>Telepon / WhatsApp</strong><span>+62 812-3456-7890</span></div>
+                     </div>
+                     <div class="ctitem">
+                        <div class="cticon"><i class="fas fa-envelope"></i></div>
+                        <div class="ctinfo"><strong>Email</strong><span>sosmed.gemblengan@gmail.com</span></div>
+                     </div>
+                     <div class="ctsocrow">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-8" data-aos="fade-left">
+                  <div class="fcard">
+                     <div class="row g-3">
+                        <div class="col-sm-6"><label class="flbl">Nama Lengkap *</label><input type="text" class="fctrl" placeholder="Masukkan nama Anda"/></div>
+                        <div class="col-sm-6"><label class="flbl">Nomor Handphone *</label><input type="tel" class="fctrl" placeholder="08xxxxxxxx"/></div>
+                        <div class="col-sm-12">
+                           <label class="flbl">Tujuan Pesan / Kategori *</label>
+                           <select class="fctrl">
+                              <option>Pengaduan Masyarakat (Infrastruktur, Layanan, dll)</option>
+                              <option>Pertanyaan Seputar Administrasi</option>
+                              <option>Pemberian Saran & Masukan</option>
+                           </select>
+                        </div>
+                        <div class="col-12"><label class="flbl">Isi Pesan / Laporan *</label><textarea class="fctrl" rows="5" placeholder="Tuliskan aspirasi atau pengaduan Anda di sini..."></textarea></div>
+                        <div class="col-12"><button class="btn-red" id="ctcBtn"><i class="fas fa-paper-plane"></i>Kirim Pesan</button></div>
+                     </div>
+                     <div class="sucmsg" id="ctcOk">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Pesan / Aduan Anda berhasil dikirim ke Admin Desa.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+         <div class="container">
+            <div class="row g-5">
+               <div class="col-lg-4">
+                  <div class="fnm">Web<span>Desa</span></div>
+                  <p class="fdesc">Media informasi, transparansi, dan pelayanan publik resmi milik Pemerintah Desa demi mewujudkan masyarakat yang mandiri dan sejahtera.</p>
+                  <div class="fsoc">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-youtube"></i></a>
+                  </div>
+               </div>
+               <div class="col-sm-6 col-lg-2">
+                  <div class="ftit">Akses Cepat</div>
+                  <ul class="flinks ps-0">
+                     <li><a href="#hero"><i class="fas fa-chevron-right"></i>Beranda</a></li>
+                     <li><a href="#about"><i class="fas fa-chevron-right"></i>Profil Desa</a></li>
+                     <li><a href="#menu"><i class="fas fa-chevron-right"></i>Potensi Desa</a></li>
+                     <li><a href="#special"><i class="fas fa-chevron-right"></i>Peta Spasial (WebGIS)</a></li>
+                     <li><a href="#blog"><i class="fas fa-chevron-right"></i>Berita Desa</a></li>
+                  </ul>
+               </div>
+               <div class="col-sm-6 col-lg-2">
+                  <div class="ftit">Layanan Warga</div>
+                  <ul class="flinks ps-0">
+                     <li><a href="#reservation"><i class="fas fa-chevron-right"></i>Pengajuan Surat</a></li>
+                     <li><a href="#contact-section"><i class="fas fa-chevron-right"></i>Lapor/Aduan</a></li>
+                     <li><a href="#chefs"><i class="fas fa-chevron-right"></i>Data Aparatur</a></li>
+                  </ul>
+               </div>
+               <div class="col-lg-4">
+                  <div class="ftit">Kontak Kami</div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-map-marker-alt"></i></div>
+                     <div class="fciinfo"><strong>Alamat</strong>Balai Desa, Kabupaten Wonosobo</div>
+                  </div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-phone-alt"></i></div>
+                     <div class="fciinfo"><strong>Telepon</strong>+62 812-3456-7890</div>
+                  </div>
+                  <div class="fci">
+                     <div class="fciico"><i class="fas fa-envelope"></i></div>
+                     <div class="fciinfo"><strong>Email</strong>sosmed.gemblengan@gmail.com</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="fbot">
+            <div class="container">
+               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <p>&copy; 2026 <span>Pemerintah Desa Srawung</span>. All Rights Reserved. <br>Design adapted from Sarab Template.</p>
+                  <div><a href="#">Kebijakan Privasi</a><a href="#">Transparansi Anggaran</a></div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- Back to top -->
+      <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+    
+      <!-- jQuery -->
+      <script src="js/jquery-3.7.1.min.js"></script>
+      <!-- Bootstrap 5 -->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- AOS -->
+      <script src="js/aos.js"></script>
+      <!-- Swiper -->
+      <script src="js/swiper-bundle.min.js"></script>
+      <!-- Magnific Popup -->
+      <script src="js/jquery.magnific-popup.min.js"></script>
+      <!-- Main js -->
+      <script src="js/main.js"></script>
+   </body>
+</html>
