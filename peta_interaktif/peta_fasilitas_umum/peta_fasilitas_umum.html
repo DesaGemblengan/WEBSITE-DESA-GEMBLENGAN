@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <!-- Disamakan dengan index.html utama agar skala layar tidak melebar -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        
+        <title>Peta Fasilitas Umum - Desa Gemblengan</title>
+
+        <!-- =========================================================
+             1. RESOURCE QGIS TO WEB
+             ========================================================= -->
+        <link rel="stylesheet" href="./resources/ol.css">
+        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+        <!-- Resource khusus untuk fitur pencarian pada peta ini -->
+        <link rel="stylesheet" type="text/css" href="resources/horsey.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/ol-search-layer.min.css">
+        
+        <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+        <link rel="stylesheet" href="./resources/qgis2web.css">
+
+        <!-- =========================================================
+             2. RESOURCE WEBSITE UTAMA (Load di bawah agar menang prioritas)
+             ========================================================= -->
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="../../css/aos.css" rel="stylesheet"/>
+        <!-- FontAwesome Web Utama -->
+        <link rel="stylesheet" href="../../css/all.min.css"/>
+        <link rel="stylesheet" href="../../css/style.css" />
+
+        <!-- =========================================================
+             3. CUSTOM STYLING & PERBAIKAN KONFLIK QGIS
+             ========================================================= -->
+        <style>
+            /* Reset dari QGIS & Force Ukuran Normal */
+            html, body {
+                background-color: #f8f9fa;
+                font-size: 16px !important; 
+                font-family: 'Poppins', sans-serif !important;
+                
+                /* Memaksa scrollbar agar halaman bisa digulir ke bawah */
+                overflow-y: auto !important; 
+                overflow-x: hidden !important;
+            }
+            .ol-control > * {
+                background-color: #f8f8f8!important;
+                color: #444444!important;
+                border-radius: 0px;
+                font-size: 14px !important; 
+            }
+            .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
+                color: #444444!important;
+            }
+            .search-layer-input-search {
+                background-color: #f8f8f8!important;
+            }
+            .ol-control > *:focus, .ol-control >*:hover {
+                background-color: rgba(248, 248, 248, 0.7)!important;
+            } 
+            .ol-control {
+                background-color: rgba(255,255,255,.4) !important;
+                padding: 2px !important;
+            }
+
+            /* --- STYLE UNTUK JENDELA PETA (Map Window) --- */
+            .map-container {
+                margin-top: -40px; 
+                position: relative;
+                z-index: 10;
+            }
+            #map {
+                width: 100%;
+                height: 65vh; 
+                min-height: 500px;
+                background-color: #ffffff;
+                border-radius: 15px; 
+                box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
+                border: 4px solid #ffffff; 
+                overflow: hidden;
+            }
+
+            /* --- STYLE HEADER HALAMAN --- */
+            .inner-header {
+                position: relative;
+                background-color: #111111;
+                padding: 120px 0 120px 0; 
+                text-align: center;
+                color: #fff;
+            }
+            .inner-header .htitle {
+                color: #fff;
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+            .inner-header .hdesc {
+                color: rgba(255,255,255,0.8);
+                font-size: 1.1rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            /* --- STYLE KOTAK INFO & LEGENDA --- */
+            .map-info-box {
+                background: #ffffff;
+                border-radius: 12px;
+                padding: 30px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+                height: 100%;
+            }
+            .map-info-box h4 {
+                font-family: 'Playfair Display', serif;
+                font-weight: 700;
+                color: #222;
+                margin-bottom: 20px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+            .map-info-box h4::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 50px;
+                height: 3px;
+                background-color: #e74c3c; /* Warna merah tema infrastruktur */
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- ============================================================
+             TOP BAR 
+             ============================================================ -->
+        <div id="topbar">
+            <div class="container">
+               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <div class="top-contact d-flex flex-wrap">
+                     <span><i class="fas fa-phone-alt"></i>+62 812-3456-7890</span>
+                     <span><i class="fas fa-envelope"></i>sosmed.gemblengan@gmail.com</span>
+                     <span><i class="fas fa-map-marker-alt"></i>Balai Desa Gemblengan, Garung, Wonosobo, Jawa Tengah</span>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                     <span class="ttag"><i class="fas fa-check-circle me-1"></i>Pelayanan Warga Buka</span>
+                     <div class="tsoc">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+        <!-- ============================================================
+             NAVBAR
+             ============================================================ -->
+         <nav class="navbar navbar-expand-lg" id="nav">
+            <div class="container">
+               <a class="navbar-brand" href="../../index.html">
+                  <div class="blogo">
+                     <div class="bico"><i class="fas fa-landmark"></i></div>
+                     <div>
+                        <div class="bname">Web<span>Desa Gemblengan</span></div>
+                        <div class="bsub">Pemerintahan & Informasi Terpadu</div>
+                     </div>
+                  </div>
+               </a>
+               <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+               <i class="fas fa-bars" style="color:var(--primary);font-size:1.35rem;"></i>
+               </button>
+               <div class="collapse navbar-collapse" id="navmenu">
+                  <ul class="navbar-nav mx-auto">
+                     <li class="nav-item"><a class="nav-link" href="../../index.html#hero">Beranda</a></li>
+                     <li class="nav-item dropdown">
+                          <a class="nav-link" href="../../index.html#about" id="navbarDropdownProfil" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             Profil Desa <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                          </a>
+                          <ul class="dropdown-menu border-0 shadow">
+                             <li><a class="dropdown-item" href="../../geografi_demografi.html">Geografi & Demografi</a></li>
+                             <li><a class="dropdown-item" href="../../sejarah_desagemblengan.html">Sejarah Desa</a></li>
+                          </ul>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link" href="../../index.html#menu" id="navbarDropdownPotensi" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           Info Dusun <i class="fas fa-chevron-down" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow">
+                           <li><a class="dropdown-item" href="../../dusun/gemblengan.html">Dusun Gemblengan</a></li>
+                           <li><a class="dropdown-item" href="../../dusun/bedilon.html">Dusun Bedilon</a></li>
+                           <li><a class="dropdown-item" href="../../dusun/gesing.html">Dusun Gesing</a></li>
+                           <li><a class="dropdown-item" href="../../dusun/gajihan.html">Dusun Gajihan</a></li>
+                           <li><a class="dropdown-item" href="../../dusun/kasiman.html">Dusun Kasiman</a></li>
+                        </ul>
+                     </li>
+                     <li class="nav-item"><a class="nav-link active" href="../../peta_interaktif.html">Peta Desa</a></li>
+                     <li class="nav-item"><a class="nav-link" href="../../potensi_desa.html">Potensi</a></li>
+                     <li class="nav-item"><a class="nav-link" href="../../rincian_struktur_organisasi.html">Aparatur</a></li>
+                     <li class="nav-item"><a class="nav-link" href="../../apbdes.html">Transparansi</a></li>
+                     <li class="nav-item"><a class="nav-link" href="../../index.html#contact-section">Kontak</a></li>
+                  </ul>
+                  <div class="d-flex align-items-center ms-lg-3 mt-3 mt-lg-0">
+                      <img src="../../img/lambang_kabupaten_wonosobo.webp" alt="Logo Kanan" style="height: 45px; max-width: 150px; object-fit: contain; display: block;">
+                   </div>
+               </div>
+            </div>
+         </nav>
+
+        <!-- ============================================================
+             HEADER JUDUL PETA
+             ============================================================ -->
+        <section class="inner-header">
+            <div class="container d-flex flex-column align-items-center justify-content-center">
+               <span class="mb-3 px-4 py-2 shadow-sm" style="background-color: #e74c3c; color: #fff; font-weight: 600; border-radius: 50px; font-size: 0.85rem; letter-spacing: 0.5px; display: inline-block;">
+                  <i class="fas fa-building me-1"></i> Infrastruktur Publik
+               </span>
+               <h1 class="htitle text-white mb-3">Peta <span style="color: #ff6b6b;">Fasilitas Umum</span></h1>
+               <p class="hdesc text-light mx-auto" style="max-width: 600px;">Pemetaan sebaran titik lokasi sarana prasarana desa meliputi sarana pendidikan, tempat ibadah, kantor pemerintahan, dan fasilitas sosial lainnya.</p>
+            </div>
+         </section>
+
+        <!-- ============================================================
+             JENDELA PETA QGIS
+             ============================================================ -->
+        <section class="map-container">
+            <div class="container">
+                <div id="map">
+                    <div id="popup" class="ol-popup">
+                        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                        <div id="popup-content"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             INFORMASI PETA & LEGENDA
+             ============================================================ -->
+<section style="padding: 60px 0 80px 0;">
+            <div class="container">
+                <div class="row g-4">
+                    
+                    <!-- KOTAK INFORMASI -->
+                    <div class="col-lg-8">
+                        <div class="map-info-box">
+                            <h4>Informasi Terkait Peta</h4>
+                            <p style="color: #555; line-height: 1.7;">
+                                Peta Fasilitas Umum ini menampilkan titik-titik koordinat sebaran layanan publik utama yang dikelola atau berada dalam pengawasan yurisdiksi Desa Gemblengan. Fasilitas ini mencakup bangunan balai desa, puskesmas, fasilitas pendidikan, lapangan, hingga fasilitas keagamaan.
+                            </p>
+                            <p style="color: #555; line-height: 1.7;">
+                                Ketersediaan peta sebaran ini diharapkan mempermudah masyarakat luas maupun pemangku kepentingan untuk meninjau jangkauan layanan dasar desa dan mengevaluasi area mana saja yang masih memerlukan pembangunan sarana prasarana baru.
+                            </p>
+                            
+                            <hr class="my-4" style="border-color: #eee;">
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <strong><i class="fas fa-globe-asia text-primary me-2"></i>Sistem Koordinat:</strong>
+                                    <div class="text-muted ms-4">WGS 84 (EPSG:4326)</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong><i class="fas fa-calendar-alt text-primary me-2"></i>Pembaruan Terakhir:</strong>
+                                    <div class="text-muted ms-4">Juli 2026</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KOTAK LEGENDA (Direvisi) -->
+                    <div class="col-lg-4">
+                        <div class="map-info-box">
+                            <h4>Legenda</h4>
+                            <div style="color: #555; font-size: 0.95rem;">
+                                <!-- Titik Fasilitas (Menggunakan Tag IMG untuk Ikon) -->
+                                <!-- Catatan: Ganti tulisan 'legend/nama_file.png' dengan path ikon asli yang diekspor QGIS milik Anda -->
+                                
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="legend/balai_desa.svg" alt="Ikon Balai Desa" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>Balai Desa</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="legend/puskesmas.svg" alt="Ikon Puskesmas" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>Puskesmas Bantu</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="legend/masjid.svg" alt="Ikon Masjid" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>Masjid / Musholla</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="legend/sekolah.svg" alt="Ikon Sekolah" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>Sekolah</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-4">
+                                    <img src="legend/lapangan.svg" alt="Ikon Lapangan" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>Lapangan</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-4">
+                                    <img src="legend/gedung.svg" alt="Ikon Lapangan" style="width: 20px; height: 20px; margin-right: 15px; object-fit: contain;">
+                                    <span>GOR</span>
+                                </div>
+                                
+                                <hr style="border-color: #eee; margin: 15px 0;">
+                                
+                                <div class="d-flex align-items-center mb-3">
+                                    <div style="width: 25px; height: 4px; background-color: #1e2a2a; margin-right: 15px; border-radius: 2px;"></div>
+                                    <span>Batas Desa (Kabupaten)</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div style="width: 25px; height: 3px; background-color: #95a5a6; margin-right: 15px; border-top: 2px dashed #333;"></div>
+                                    <span>Batas RT</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div style="width: 25px; height: 4px; background-color: #3498db; margin-right: 15px; border-radius: 2px;"></div>
+                                    <span>Aliran Sungai</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <!-- Warna jaringan jalan diubah menjadi kuning -->
+                                    <div style="width: 25px; height: 3px; background-color: #f1c40f; margin-right: 15px; border-radius: 2px;"></div>
+                                    <span>Jaringan Jalan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             FOOTER 
+             ============================================================ -->
+        <footer>
+            <div class="container">
+               <div class="row g-5">
+                  <div class="col-lg-4">
+                     <div class="fnm">Web<span>Desa</span></div>
+                     <p class="fdesc">Media informasi, transparansi, dan pelayanan publik resmi milik Pemerintah Desa demi mewujudkan masyarakat yang mandiri dan sejahtera.</p>
+                     <div class="fsoc">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                     </div>
+                  </div>
+                  <div class="col-sm-6 col-lg-2">
+                     <div class="ftit">Akses Cepat</div>
+                     <ul class="flinks ps-0">
+                        <li><a href="../../index.html#hero"><i class="fas fa-chevron-right"></i>Beranda</a></li>
+                        <li><a href="../../index.html#about"><i class="fas fa-chevron-right"></i>Profil Desa</a></li>
+                        <li><a href="../../peta_interaktif.html"><i class="fas fa-chevron-right"></i>Peta Spasial (WebGIS)</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-sm-6 col-lg-2">
+                     <div class="ftit">Layanan Warga</div>
+                     <ul class="flinks ps-0">
+                        <li><a href="../../index.html#contact-section"><i class="fas fa-chevron-right"></i>Lapor/Aduan</a></li>
+                        <li><a href="../../rincian_struktur_organisasi.html"><i class="fas fa-chevron-right"></i>Data Aparatur</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-4">
+                     <div class="ftit">Kontak Kami</div>
+                     <div class="fci">
+                        <div class="fciico"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="fciinfo"><strong>Alamat</strong>Balai Desa, Kabupaten Wonosobo</div>
+                     </div>
+                     <div class="fci">
+                        <div class="fciico"><i class="fas fa-phone-alt"></i></div>
+                        <div class="fciinfo"><strong>Telepon</strong>+62 812-3456-7890</div>
+                     </div>
+                     <div class="fci">
+                        <div class="fciico"><i class="fas fa-envelope"></i></div>
+                        <div class="fciinfo"><strong>Email</strong>sosmed.gemblengan@gmail.com</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="fbot">
+               <div class="container">
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                     <p>&copy; 2026 <span>Pemerintah Desa</span>. All Rights Reserved.</p>
+                  </div>
+               </div>
+            </div>
+         </footer>
+         <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
+        <!-- =========================================================
+             4. JAVASCRIPT QGIS TO WEB (Layers Spesifik Peta Fasum)
+             ========================================================= -->
+        <script src="resources/qgis2web_expressions.js"></script>
+        <script src="./resources/functions.js"></script>
+        <script src="./resources/ol.js"></script>
+        
+        <!-- Script khusus fitur pencarian yang ada di peta ini -->
+        <script src="resources/horsey.min.js"></script>
+        <script src="resources/ol-search-layer.js"></script>
+        
+        <script src="./resources/ol-layerswitcher.js"></script>
+        <script src="resources/photon-geocoder-autocomplete.min.js"></script>
+        <script src="resources/olms.js"></script>
+        
+        <!-- Script Asli Peta Fasilitas Umum -->
+        <script src="layers/BATASDESAKABUPATENGARUNG_2.js"></script>
+        <script src="layers/BATASDESAGEMBLENGAN_3.js"></script>
+        <script src="layers/BATASDUSUN_DESAGEMBLENGAN_4.js"></script>
+        <script src="layers/BATASRTDESAGEMBLENGAN_5.js"></script>
+        <script src="layers/JalanDesaGemblengan_6.js"></script>
+        <script src="layers/SUNGAIDesaGemblengan_7.js"></script>
+        <script src="layers/TtitikFasumGemblengan_8.js"></script>
+        
+        <script src="styles/BATASDESAKABUPATENGARUNG_2_style.js"></script>
+        <script src="styles/BATASDESAGEMBLENGAN_3_style.js"></script>
+        <script src="styles/BATASDUSUN_DESAGEMBLENGAN_4_style.js"></script>
+        <script src="styles/BATASRTDESAGEMBLENGAN_5_style.js"></script>
+        <script src="styles/JalanDesaGemblengan_6_style.js"></script>
+        <script src="styles/SUNGAIDesaGemblengan_7_style.js"></script>
+        <script src="styles/TtitikFasumGemblengan_8_style.js"></script>
+        
+        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./resources/Autolinker.min.js"></script>
+        <script src="./resources/qgis2web.js"></script>
+
+        <!-- =========================================================
+             5. JAVASCRIPT WEBSITE UTAMA 
+             ========================================================= -->
+        <script src="../../js/jquery-3.7.1.min.js"></script>
+        <script src="../../js/bootstrap.bundle.min.js"></script>
+        <script src="../../js/aos.js"></script>
+        <script src="../../js/main.js"></script>
+    </body>
+</html>
